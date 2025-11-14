@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS Termos ;
 
 BEGIN TRANSACTION;
 
-    CREATE TABLE Termos(
+    CREATE TABLE IF NOT EXISTS Termos(
         id          INTEGER PRIMARY KEY,
         gl          TEXT NOT NULL UNIQUE, -- tal vez debería quitar a ligadura de 'unique' aqui e usar esto como clave foránea mellor
         en          TEXT NOT NULL ,
@@ -16,7 +16,7 @@ BEGIN TRANSACTION;
         abreviacion TEXT NOT NULL CHECK ( abreviacion in ( 'forma completa' , 'siglas'    , 'abreviación' ) )
     );
 
-    CREATE TABLE Definicions(
+    CREATE TABLE IF NOT EXISTS Definicions(
         id            INTEGER PRIMARY KEY,
         id_definicion INTEGER NOT NULL,
         definicion    TEXT    NOT NULL,
