@@ -44,6 +44,7 @@ BEGIN TRANSACTION;
         id_sinonimo INTEGER NOT NULL ,
         sinonimo    INTEGER NOT NULL ,
         -- Non sei se estas claves estarán ben así
+        -- Deberíase checkear que o resto de parámetros coincide, como xenero, clase, numeros, etc.
         FOREIGN KEY (id_sinonimo) REFERENCES Termos(id),
         FOREIGN KEY (sinonimo) REFERENCES Termos(id)
     );
@@ -51,9 +52,15 @@ BEGIN TRANSACTION;
     INSERT INTO
         Termos( gl, en, es, xenero, clase, numeros, abreviacion )
     VALUES
-        ( "termo_gl_1", "termo_en_1", "termo_es_1", "femenino", "adxetivo", "plural", "forma completa"),
-        ( "termo_gl_2", "termo_en_2", "termo_es_2", "femenino", "adxetivo", "plural", "forma completa"),
-        ( "termo_gl_3", "termo_en_3", "termo_es_3", "femenino", "adxetivo", "plural", "forma completa");
+        ( "termo_GL_1" , "termo_EN_1" , "termo_ES_1" , "femenino"  , "adxetivo"   , "plural"   , "forma completa" ) ,
+        ( "termo_GL_2" , "termo_EN_2" , "termo_ES_2" , "masculino" , "adxetivo"   , "singular" , "abreviación"    ) ,
+        ( "termo_GL_3" , "termo_EN_3" , "termo_ES_3" , "femenino"  , "sustantivo" , "plural"   , "forma completa" ) ,
+        ( "termo_GL_4" , "termo_EN_4" , "termo_ES_4" , "neutro"    , "adxetivo"   , "plural"   , "forma completa" ) ,
+        ( "termo_GL_5" , "termo_EN_5" , "termo_ES_5" , "femenino"  , "adxetivo"   , "plural"   , "forma completa" ) ,
+        ( "termo_GL_6" , "termo_EN_6" , "termo_ES_6" , "femenino"  , "verbo"      , "singular" , "siglas"         ) ,
+        ( "termo_GL_7" , "termo_EN_7" , "termo_ES_7" , "neutro"    , "adxetivo"   , "plural"   , "forma completa" ) ,
+        ( "termo_GL_8" , "termo_EN_8" , "termo_ES_8" , "femenino"  , "adxetivo"   , "plural"   , "forma completa" ) ,
+        ( "termo_GL_9" , "termo_EN_9" , "termo_ES_9" , "masculino" , "adxetivo"   , "singular" , "forma completa" ) ;
 
     INSERT INTO
         AreasTematicas( id_area, area )
@@ -61,7 +68,16 @@ BEGIN TRANSACTION;
         (1, "area_1"),
         (1, "area_2"),
         (1, "area_3"),
-        (2, "area_2");
+        (2, "area_2"),
+        (3, "area_2"),
+        (3, "area_3"),
+        (4, "area_2"),
+        (5, "area_4"),
+        (6, "area_4"),
+        (7, "area_4"),
+        (8, "area_2"),
+        (9, "area_1"),
+        (9, "area_2");
 
     INSERT INTO
         Definicions( id_definicion, definicion )
@@ -70,7 +86,15 @@ BEGIN TRANSACTION;
         (1, "definicion_1_2"),
         (1, "definicion_1_3"),
         (2, "definicion_2_1"),
-        (3, "definicion_1_1");
+        (3, "definicion_3_1"),
+        (4, "definicion_4_1"),
+        (5, "definicion_5_1"),
+        (6, "definicion_6_1"),
+        (7, "definicion_7_1"),
+        (8, "definicion_8_1"),
+        (9, "definicion_9_1"),
+        (9, "definicion_9_2"),
+        (9, "definicion_9_3");
 
     INSERT INTO
         Fontes(id_fonte, fonte)
@@ -80,6 +104,7 @@ BEGIN TRANSACTION;
     INSERT INTO
         Sinonimos(id_sinonimo, sinonimo)
     VALUES
-        (1, 2); -- Termos con id 1 e 2 son sinónimos
+        (5, 6), -- Termos con id 5, 6 e 7 son sinónimos
+        (5, 7);
 
 END TRANSACTION;
