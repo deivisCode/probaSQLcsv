@@ -39,6 +39,15 @@ BEGIN TRANSACTION;
         FOREIGN KEY (id_fonte) REFERENCES Termos(id)
     );
 
+    CREATE TABLE IF NOT EXISTS Sinonimos(
+        id          INTEGER PRIMARY KEY ,
+        id_sinonimo INTEGER NOT NULL ,
+        sinonimo    INTEGER NOT NULL ,
+        -- Non sei se estas claves estarán ben así
+        FOREIGN KEY (id_sinonimo) REFERENCES Termos(id),
+        FOREIGN KEY (sinonimo) REFERENCES Termos(id)
+    );
+
     INSERT INTO
         Termos( gl, en, es, xenero, clase, numeros, abreviacion )
     VALUES
@@ -67,5 +76,10 @@ BEGIN TRANSACTION;
         Fontes(id_fonte, fonte)
     VALUES
         (1, "Miña imaxinacion");
+
+    INSERT INTO
+        Sinonimos(id_sinonimo, sinonimo)
+    VALUES
+        (1, 2); -- Termos con id 1 e 2 son sinónimos
 
 END TRANSACTION;
