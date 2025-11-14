@@ -2,6 +2,8 @@ PRAGMA foreign_keys = ON;
 
 DROP TABLE IF EXISTS Definicions ;
 DROP TABLE IF EXISTS Termos ;
+DROP TABLE IF EXISTS AreasTematicas ;
+DROP TABLE IF EXISTS Fontes ;
 
 BEGIN TRANSACTION;
 
