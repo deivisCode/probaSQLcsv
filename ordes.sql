@@ -30,6 +30,13 @@ BEGIN TRANSACTION;
         FOREIGN KEY (id_area) REFERENCES Termos(id)
     );
 
+    CREATE TABLE IF NOT EXISTS Fontes(
+        id       INTEGER PRIMARY KEY ,
+        id_fonte INTEGER NOT NULL ,
+        fonte    TEXT    NOT NULL ,
+        FOREIGN KEY (id_fonte) REFERENCES Termos(id)
+    );
+
     INSERT INTO
         Termos( gl, en, es, xenero, clase, numeros, abreviacion )
     VALUES
@@ -53,5 +60,10 @@ BEGIN TRANSACTION;
         (1, "definicion_1_3"),
         (2, "definicion_2_1"),
         (3, "definicion_1_1");
+
+    INSERT INTO
+        Fontes(id_fonte, fonte)
+    VALUES
+        (1, "Miña imaxinacion");
 
 END TRANSACTION;
