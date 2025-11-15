@@ -1,2 +1,10 @@
-id_termos,gl,en,es,area_tematica_1,area_tematica_2,area_tematica_3,xenero,clase,numeros,abreviacion,fontes
-1,exemplo,example,ejemplo,area1,area2,area3,femenino,sustantivo,singular,forma completa,sen fontes
+id_termos,gl,en,es,xenero,clase,numeros,abreviacion
+"1","termo_GL_1","termo_EN_1","termo_ES_1","femenino","adxetivo","plural","forma completa"
+"2","termo_GL_2","termo_EN_2","termo_ES_2","masculino","adxetivo","singular","abreviación"
+"3","termo_GL_3","termo_EN_3","termo_ES_3","femenino","sustantivo","plural","forma completa"
+"4","termo_GL_4","termo_EN_4","termo_ES_4","neutro","adxetivo","plural","forma completa"
+"5","termo_GL_5","termo_EN_5","termo_ES_5","femenino","adxetivo","plural","forma completa"
+"6","termo_GL_6","termo_EN_6","termo_ES_6","femenino","verbo","singular","siglas"
+"7","termo_GL_7","termo_EN_7","termo_ES_7","neutro","adxetivo","plural","forma completa"
+"8","termo_GL_8","termo_EN_8","termo_ES_8","femenino","adxetivo","plural","forma completa"
+"9","termo_GL_9","termo_EN_9","termo_ES_9","masculino","adxetivo","singular","forma completa"
