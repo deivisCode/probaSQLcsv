@@ -2,10 +2,10 @@ SHELL := bash
 .DEFAULT_GOAL := datos.db
 .PHONY: limpa
 
+DATOS := $(wildcard datos/*.csv)
 
-datos.db: datos/termos.csv ordes.sql
-	sqlite3 datos.db -- '.read ordes.sql'
-	sqlite3 datos.db -- '.import --csv --skip 1 datos/termos.csv Termos'
+datos.db: $(DATOS) ordes.sql
+	python3 cargar.py
 
 limpa:
 	rm datos.db
