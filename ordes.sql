@@ -49,6 +49,36 @@ BEGIN TRANSACTION;
         FOREIGN KEY (sinonimo) REFERENCES Termos(id)
     );
 
+    CREATE VIEW IF NOT EXISTS GlDefinicions AS
+        SELECT
+            gl, definicion
+        FROM
+            Termos
+            INNER JOIN
+            Definicions
+            ON Definicions.id_definicion = Termos.id
+    ;
+
+    CREATE VIEW IF NOT EXISTS EnDefinicions AS
+        SELECT
+            en, definicion
+        FROM
+            Termos
+            INNER JOIN
+            Definicions
+            ON Definicions.id_definicion = Termos.id
+    ;
+
+    CREATE VIEW IF NOT EXISTS EsDefinicions AS
+        SELECT
+            es, definicion
+        FROM
+            Termos
+            INNER JOIN
+            Definicions
+            ON Definicions.id_definicion = Termos.id
+    ;
+
     INSERT INTO
         Termos( gl, en, es, xenero, clase, numeros, abreviacion )
     VALUES
