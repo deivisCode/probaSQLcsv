@@ -9,7 +9,7 @@ BEGIN TRANSACTION;
 
     CREATE TABLE IF NOT EXISTS Termos(
         id          INTEGER PRIMARY KEY,
-        gl          TEXT NOT NULL UNIQUE, -- tal vez debería quitar a ligadura de 'unique' aqui e usar esto como clave foránea mellor
+        gl          TEXT NOT NULL UNIQUE,
         en          TEXT NOT NULL ,
         es          TEXT NOT NULL ,
         xenero      TEXT NOT NULL CHECK ( xenero      in ( 'femenino'       , 'masculino' , 'neutro'      ) ) ,
@@ -19,33 +19,33 @@ BEGIN TRANSACTION;
     );
 
     CREATE TABLE IF NOT EXISTS Definicions(
-        id            INTEGER PRIMARY KEY,
-        id_definicion INTEGER NOT NULL,
-        definicion    TEXT    NOT NULL,
-        FOREIGN KEY (id_definicion) REFERENCES Termos(id)
+        id_definicion  INTEGER PRIMARY KEY,
+        ext_definicion INTEGER NOT NULL,
+        definicion     TEXT    NOT NULL,
+        FOREIGN KEY (ext_definicion) REFERENCES Termos(id)
     );
 
     CREATE TABLE IF NOT EXISTS AreasTematicas(
-        id      INTEGER PRIMARY KEY ,
-        id_area INTEGER NOT NULL ,
-        area    TEXT    NOT NULL CHECK ( area in ( "area_1", "area_2", "area_3", "area_4" )),
-        FOREIGN KEY (id_area) REFERENCES Termos(id)
+        id_area  INTEGER PRIMARY KEY ,
+        ext_area INTEGER NOT NULL ,
+        area     TEXT    NOT NULL CHECK ( area in ( "area_1", "area_2", "area_3", "area_4" )),
+        FOREIGN KEY (ext_area) REFERENCES Termos(id)
     );
 
     CREATE TABLE IF NOT EXISTS Fontes(
-        id       INTEGER PRIMARY KEY ,
-        id_fonte INTEGER NOT NULL ,
-        fonte    TEXT    NOT NULL ,
-        FOREIGN KEY (id_fonte) REFERENCES Termos(id)
+        id_fonte  INTEGER PRIMARY KEY ,
+        ext_fonte INTEGER NOT NULL ,
+        fonte     TEXT    NOT NULL ,
+        FOREIGN KEY (ext_fonte) REFERENCES Termos(id)
     );
 
     CREATE TABLE IF NOT EXISTS Sinonimos(
-        id          INTEGER PRIMARY KEY ,
-        id_sinonimo INTEGER NOT NULL ,
-        sinonimo    INTEGER NOT NULL ,
+        id_sinonimo  INTEGER PRIMARY KEY ,
+        ext_sinonimo INTEGER NOT NULL ,
+        sinonimo     INTEGER NOT NULL ,
         -- Non sei se estas claves estarán ben así
         -- Deberíase checkear que o resto de parámetros coincide, como xenero, clase, numeros, etc.
-        FOREIGN KEY (id_sinonimo) REFERENCES Termos(id),
+        FOREIGN KEY (ext_sinonimo) REFERENCES Termos(id),
         FOREIGN KEY (sinonimo) REFERENCES Termos(id)
     );
 
@@ -64,7 +64,7 @@ BEGIN TRANSACTION;
             Termos
             INNER JOIN
             Definicions
-            ON Definicions.id_definicion = Termos.id
+            ON Definicions.ext_definicion = Termos.id
     ;
 
     CREATE VIEW IF NOT EXISTS EnDefinicions AS
@@ -74,7 +74,7 @@ BEGIN TRANSACTION;
             Termos
             INNER JOIN
             Definicions
-            ON Definicions.id_definicion = Termos.id
+            ON Definicions.ext_definicion = Termos.id
     ;
 
     CREATE VIEW IF NOT EXISTS EsDefinicions AS
@@ -84,7 +84,7 @@ BEGIN TRANSACTION;
             Termos
             INNER JOIN
             Definicions
-            ON Definicions.id_definicion = Termos.id
+            ON Definicions.ext_definicion = Termos.id
     ;
 
     INSERT INTO
@@ -101,7 +101,7 @@ BEGIN TRANSACTION;
         ( "termo_GL_9" , "termo_EN_9" , "termo_ES_9" , "masculino" , "adxetivo"   , "singular" , "forma completa" ) ;
 
     INSERT INTO
-        AreasTematicas( id_area, area )
+        AreasTematicas( ext_area, area )
     VALUES
         (1, "area_1"),
         (1, "area_2"),
@@ -118,7 +118,7 @@ BEGIN TRANSACTION;
         (9, "area_2");
 
     INSERT INTO
-        Definicions( id_definicion, definicion )
+        Definicions( ext_definicion, definicion )
     VALUES
         (1, "definicion_1_1"),
         (1, "definicion_1_2"),
@@ -135,12 +135,12 @@ BEGIN TRANSACTION;
         (9, "definicion_9_3");
 
     INSERT INTO
-        Fontes(id_fonte, fonte)
+        Fontes(ext_fonte, fonte)
     VALUES
         (1, "Miña imaxinacion");
 
     INSERT INTO
-        Sinonimos(id_sinonimo, sinonimo)
+        Sinonimos(ext_sinonimo, sinonimo)
     VALUES
         (5, 6), -- Termos con id 5, 6 e 7 son sinónimos
         (5, 7);
