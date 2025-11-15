@@ -7,5 +7,5 @@ DATOS := $(wildcard datos/*.csv)
 datos.db: $(DATOS) ordes.sql
 	python3 cargar.py
 
-limpa:
+limpa: datos.db
 	rm datos.db
