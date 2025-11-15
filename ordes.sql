@@ -49,6 +49,14 @@ BEGIN TRANSACTION;
         FOREIGN KEY (sinonimo) REFERENCES Termos(id)
     );
 
+    CREATE TRIGGER probadefs
+        BEFORE INSERT ON Definicions
+        BEGIN
+            SELECT CASE WHEN NEW.definicion = 'patata' THEN
+                RAISE   (ABORT, "Non podes meter esa definicion")
+            END;
+        END;
+
     CREATE VIEW IF NOT EXISTS GlDefinicions AS
         SELECT
             gl, definicion
